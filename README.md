@@ -37,13 +37,8 @@ To get the app running in Two container on Differrent ports with redis in anothe
 
 3. Go to Cloudformation service, click on create stack and upload json file "aws_ecs_app.json". Click on button Next
 
-4. On Next page add stack of your choice and click on Next button.
+4. On Next page, Give Name stack of your choice and click on Next button.
 
-5. Within few minutes your stack going to deploy.
+5. Within few minutes stack going to deploy.
 
-6. Once stack deployed, copy paste public IP on browser and appliction will run. 
-
-
-
-
-
+6. Once stack deployed, copy paste public IP of EC2 Instance on the browser and appliction will run.
