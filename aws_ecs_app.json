@@ -37,7 +37,7 @@
         "SecurityGroupId": {
             "Type": "String",
             "Description": "Optional - Specifies the Security Group Id of an existing Security Group. Leave blank to have a new Security Group created\n",
-            "Default": ""
+            "Default": "sg-d48681bf"
         },
         "VpcCidr": {
             "Type": "String",
@@ -97,12 +97,12 @@
         "EbsVolumeSize": {
             "Type": "Number",
             "Description": "Optional - Specifies the Size in GBs, of the newly created Amazon Elastic Block Store (Amazon EBS) volume\n",
-            "Default": "0"
+            "Default": "22"
         },
         "EbsVolumeType": {
             "Type": "String",
             "Description": "Optional - Specifies the Type of (Amazon EBS) volume",
-            "Default": "",
+            "Default": "gp2",
             "AllowedValues": [
                 "",
                 "standard",
@@ -115,6 +115,7 @@
         },
         "DeviceName": {
             "Type": "String",
+            "Default": "/dev/sdf",
             "Description": "Optional - Specifies the device mapping for the Volume"
         },
         "UseSpot": {
@@ -773,7 +774,25 @@
                     ]
                 }
             }
-        }
+        },
+
+
+        "Service": {
+            "Type": "AWS::ECS::Service",
+            "Properties": {
+              "Cluster": {
+                "Ref": "EcsClusterName"
+              },
+              "DesiredCount": 1,
+              "DeploymentConfiguration": {
+                "MaximumPercent": 200,
+                "MinimumHealthyPercent": 50
+              },
+              "TaskDefinition": {
+                "Ref": "taskdefinition"
+              }
+            }
+          }
    },
 
     "Outputs": {
